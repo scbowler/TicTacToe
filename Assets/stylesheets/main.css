@@ -1,0 +1,72 @@
+body {
+    
+}
+
+/*//////////////////////////////*/
+/*////[full game container]/////*/
+/*//////////////////////////////*/
+
+.page {
+    margin: 0 auto;
+    border: 1px solid rgba(0,0,0,0.3);
+    height: 710px;
+    width: 900px;
+    position: relative;
+}
+
+
+/*///////////////////////*/
+/*////[ game board ]/////*/
+/*///////////////////////*/
+
+.game_board {
+    border: 1px dotted rgba(0,0,0,0.3);
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    text-align: center;
+}
+
+.squares {
+    border: 1px dotted rgba(0,0,0,0.3);
+    width: 33%;
+    height: 33%;
+    float: left;
+}
+/*//////////////////////*/
+/*////[ reset box ]/////*/
+/*//////////////////////*/
+.reset_box {
+    border: 1px dotted rgba(0,0,0,0.3);
+    width: 860px;
+    height: 50px;
+    position: absolute;
+    display: inline-block;
+    top: 20px;
+    left: 20px;
+}
+
+.reset_box button {
+    width: 120px;
+    height: 30px;
+    float: right;
+    margin: 10px;
+}
+
+
+/*/////////////////////////////*/
+/*////[ scores & options ]/////*/
+/*/////////////////////////////*/
+
+
+.scores_options_box {
+    border: 1px dotted rgba(0,0,0,0.3);
+    width: 240px;
+    height: 600px;
+    position: absolute;
+    float: right;
+    bottom: 20px;
+    right: 20px;
+}
