@@ -1,21 +1,40 @@
+//set all global variable names
 var boardArray, playerX, playerO, ties, whosTurn, moves;
 
+//function called on page load to initialize all global variables
 function init(){
-    boardArray = [['', '', ''], ['', '', ''], ['', '', '']];
-    playerX = ["X", 0];
-    playerO = ["O", 0];
-    ties = 0;
-    whosTurn = "x";
-    moves = 0;
+    boardArray = [['', '', ''], ['', '', ''], ['', '', '']]; //two dimensional array that represents the game board
+    playerX = ["X", 0];                                      //array to hold info for the 'x' player contains: [player letter, number of wins]
+    playerO = ["O", 0];                                      //array to hold info for the 'o' player contains: [player letter, number of wins]
+    ties = 0;                                                //variable to hold the number of times there was a tie game
+    whosTurn = 'x';                                          //keeps track of whos turn it is using either 'x' or 'o'
+    moves = 0;                                               //number of turns taken for current game
+}
+
+//function to determin which player will go first / returns nothing
+function whosFirst(){
+    var num = Math.floor((Math.random() * 2) +1);
+    
+    if(num === 1){
+        whosTurn = playerX[0];
+    }else{
+        whosTurn = playerO[0];
+    }
+    
 }
 
 function mainGame(ele){
+    if(ele.innerHTML == 'x' || ele.innerHTML == 'o'){
+        return;
+    }
+    
     ele.innerHTML = whosTurn;
     
     updateArray(ele);
     
     if(didWin(whosTurn)){
         alert(whosTurn + "'s WON!")
+        return;
     }
     
     switchPlayer();
