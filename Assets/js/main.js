@@ -11,40 +11,49 @@ function init(){
     moves = 0;                                               //number of turns taken for current game
 }
 
-//function to determin which player will go first / returns nothing
+//function to randomly determin which player will go first / returns nothing
 function whosFirst(){
-    var num = Math.floor((Math.random() * 2) +1);
+    var num = Math.floor((Math.random() * 2) +1);   //generates a random number between 1 and 2 then assigns the result to 'num'
     
+    //if 'num' is equal to 1 'x' is assigned to 'whosTurn' so 'x' will be first 
     if(num === 1){
         whosTurn = playerX[0];
+    //if 'num' is not qual to 1 'o' is assigned to 'whosTurn' so 'o' will be first
     }else{
         whosTurn = playerO[0];
     }
     
 }
 
+//this is the main game function that is called on a cell click / returns nothing / takes an html element as a param
 function mainGame(ele){
+    //if the element already has a 'x' or an 'o' exit the function and do nothing
     if(ele.innerHTML == 'x' || ele.innerHTML == 'o'){
-        return;
+        return; // exits the function
     }
     
+    //whos turn equals 'x' or 'o' so it is used to add an 'x' or an 'o' to the board depending whos turn it is
     ele.innerHTML = whosTurn;
     
+    //used to update the game board array (boardArray) see function for more detail
     updateArray(ele);
     
+    //calls the didWin() function to determine if a win condition exists
     if(didWin(whosTurn)){
-        alert(whosTurn + "'s WON!")
+        alert(whosTurn + "'s WON!") //do stuff if somone wins
         return;
     }
     
+    //calls the switchPlayer() function to alternate between 'x' or 'o'
     switchPlayer();
 }
 
+//updateArray(ele) takes one param of html element (the one that was clicked on) / returns nothing
 function updateArray(ele){
-    eleID = ele.getAttribute("id");
+    eleID = ele.getAttribute("id");             //sets 'eleID' to the id of the clicked on element
     
-    switch (eleID) {
-            case "r1_c1":
+    switch (eleID) {                            //a switch based on the elements id
+            case "r1_c1":                       //
                 boardArray[0][0] = whosTurn;
                 break;
             case "r1_c2":
