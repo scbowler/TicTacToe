@@ -1,5 +1,5 @@
 //set all global variable names
-var boardArray, playerX, playerO, ties, whosTurn, moves;
+var boardArray, playerX, playerO, ties, whosTurn, moves, oTurn, xTurn;
 
 //function called on page load to initialize all global variables
 function init(){
@@ -9,6 +9,8 @@ function init(){
     ties = 0;                                                //variable to hold the number of times there was a tie game
     whosTurn = 'x';                                          //keeps track of whos turn it is using either 'x' or 'o'
     moves = 0;                                               //number of turns taken for current game
+    oTurn = document.getElementById('oCheck');
+    xTurn = document.getElementById('xCheck');
 }
 
 //function to randomly determin which player will go first / returns nothing
@@ -37,10 +39,28 @@ function mainGame(ele){
     
     //used to update the game board array (boardArray) see function for more detail
     updateArray(ele);
+    moves++;
     
     //calls the didWin() function to determine if a win condition exists
-    if(didWin(whosTurn)){
+    var winner = didWin(whosTurn);
+    console.log(winner);
+    if(winner){
+        if(winner == "tie"){
+            alert("it was a tie!");
+            ties++;
+            resetGame();
+            return;
+        }
         alert(whosTurn + "'s WON!") //do stuff if somone wins
+        if (whosTurn == 'x'){
+            playerX[1]++;
+            document.getElementById('xScore').innerHTML = playerX[1];
+            resetGame();
+        }else{
+            playerO[1]++;
+            document.getElementById('oScore').innerHTML = playerO[1];
+            resetGame();
+        }
         return;
     }
     
@@ -50,12 +70,12 @@ function mainGame(ele){
 
 //updateArray(ele) takes one param of html element (the one that was clicked on) / returns nothing
 function updateArray(ele){
-    eleID = ele.getAttribute("id");             //sets 'eleID' to the id of the clicked on element
+    var eleID = ele.getAttribute("id");         //sets 'eleID' to the id of the clicked on element
     
     switch (eleID) {                            //a switch based on the elements id
-            case "r1_c1":                       //
-                boardArray[0][0] = whosTurn;
-                break;
+            case "r1_c1":                       //the elements id represents a location on the game bored
+                boardArray[0][0] = whosTurn;    //the coresponding location in the board array is assigned 
+                break;                          //to the current players letter
             case "r1_c2":
                 boardArray[0][1] = whosTurn;
                 break;
@@ -99,10 +119,14 @@ function didWin(player){
     
     for(var i=0; i<arrLength; i++){
         if(boardArray[i][0] == player && boardArray[i][1] == player && boardArray[i][2] == player ){
-            return console.log("r" + i);
+            return "r" + i;
         }else if(boardArray[0][i] == player && boardArray[1][i] == player && boardArray[2][i] == player ){
             return "c" + i;    
         }
+    }
+    
+    if(moves >= 9){
+        return "tie";
     }
     return false;
 }
@@ -127,11 +151,34 @@ function updateScore(player){
 function switchPlayer(){
     if(whosTurn == 'x'){
         whosTurn = 'o';
+        xTurn.removeAttribute("checked");
+        oTurn.setAttribute("checked", true);
         return;
     }
     if(whosTurn == 'o'){
         whosTurn = 'x';
+        oTurn.removeAttribute("checked");
+        xTurn.setAttribute("checked", true);
         return;
     }
     alert("Whos turn is it!?!?!?");
+}
+
+function resetGame(){
+    boardArray = [['','',''], ['','',''], ['','','']];
+    moves = 0;
+    
+    var boardSquares = document.querySelectorAll('.squares');
+    
+    var i = boardSquares.length;
+    while(i--) boardSquares[i].innerHTML = "";
+}
+
+function resetAll(){
+    resetGame();
+    
+    playerO[1] = 0;
+    playerX[1] = 0;
+    
+    ties = 0;
 }
