@@ -11,9 +11,11 @@
 <body onload="init()">
 <div id="" class="page">  <!--[ full game container ]-->
     
-    <div class="reset_box"> <!--[ container for reset buttons ]-->
+    <div class="button_box"> <!--[ container for buttons ]-->
+            
         <button id="" class="reset_board" name="" onclick="didWin('x')">reset board</button>
         <button id="" class="reset_all" name="" onclick="">reset all</button>
+        <button class="start_game" onclick="">start game</button>
     </div>
 
 <div id="" class="game_board"><!--[ game board container ]-->
@@ -29,16 +31,18 @@
 </div>
     <div class="scores_options_box"> <!--[ container for scores and options ]-->
         <div id="" class="score_board"> <!--[ player scores ]-->
+            <h1>scoreboard</h1>
             <div id="" class="player1_score" name="" onclick="">player 1</div>
-                <div class="">00</div>
+                <div class="mark_board">lllllll</div>
                 
-            <div id="" class="" name="" onclick="">tie</div>
+            <div id="" class="tie_score" name="" onclick="">tie</div>
+                <div class="mark_board">00</div>
             <div id="" class="player2_score" name="" onclick="">player 2</div>
-                <div class="">00</div>
+                <div class="mark_board">00</div>
         </div>
         
         <div id="" class="turn_box"> <!--[ player turn indicator ]-->
-                    <h1>your next!</h1>
+                    <h1>you're next!</h1>
                 <div id="xTurn" class="turn_show" name="" onclick="">
                     <h2>Player 1<input type="checkbox" class="" placeholder=""></h2>
                         
