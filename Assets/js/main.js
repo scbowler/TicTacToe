@@ -1,5 +1,5 @@
 //set all global variable names
-var boardArray, playerX, playerO, ties, whosTurn, moves, oTurn, xTurn;
+var boardArray, playerX, playerO, ties, whosTurn, moves, oTurn, xTurn, boardSquares;
 
 //function called on page load to initialize all global variables
 function init(){
@@ -11,6 +11,11 @@ function init(){
     moves = 0;                                               //number of turns taken for current game
     oTurn = document.getElementById('oCheck');
     xTurn = document.getElementById('xCheck');
+    boardSquares = document.querySelectorAll('.squares');
+    var myString = "";
+    for(var i=0; i<boardSquares.length; i++){
+        boardSquares[i].innerHTML = i;
+    }
 }
 
 //function to randomly determin which player will go first / returns nothing
@@ -51,6 +56,7 @@ function mainGame(ele){
             resetGame();
             return;
         }
+        gameWon(winner);
         alert(whosTurn + "'s WON!") //do stuff if somone wins
         if (whosTurn == 'x'){
             playerX[1]++;
@@ -73,31 +79,31 @@ function updateArray(ele){
     var eleID = ele.getAttribute("id");         //sets 'eleID' to the id of the clicked on element
     
     switch (eleID) {                            //a switch based on the elements id
-            case "r1_c1":                       //the elements id represents a location on the game bored
+            case "r0_c0":                       //the elements id represents a location on the game bored
                 boardArray[0][0] = whosTurn;    //the coresponding location in the board array is assigned 
                 break;                          //to the current players letter
-            case "r1_c2":
+            case "r0_c1":
                 boardArray[0][1] = whosTurn;
                 break;
-            case "r1_c3":
+            case "r0_c2":
                 boardArray[0][2] = whosTurn;
                 break;
-            case "r2_c1":
+            case "r1_c0":
                 boardArray[1][0] = whosTurn;
                 break;
-            case "r2_c2":
+            case "r1_c1":
                 boardArray[1][1] = whosTurn;
                 break;
-            case "r2_c3":
+            case "r1_c2":
                 boardArray[1][2] = whosTurn;
                 break;
-            case "r3_c1":
+            case "r2_c0":
                 boardArray[2][0] = whosTurn;
                 break;
-            case "r3_c2":
+            case "r2_c1":
                 boardArray[2][1] = whosTurn;
                 break;
-            case "r3_c3":
+            case "r2_c2":
                 boardArray[2][2] = whosTurn;
                 break;
             default:
@@ -129,6 +135,42 @@ function didWin(player){
         return "tie";
     }
     return false;
+}
+
+function gameWon(line){
+    var squareID;
+    var start = parseInt(line);
+    
+    switch (line){
+        case "r0":
+        case "r1":
+        case "r2":
+            for(var i=0; i<3; i++){
+                squareID = line + "_c" + i;
+                document.getElementById(squareID).classList.add("win");
+            }
+            break;
+        case "c0":
+        case "c1":
+        case "c2":
+            for(var i=0; i<3; i++){
+                squareID = "r" + i + "_" + line;
+                document.getElementById(squareID).classList.add("win");
+            }
+            break;
+        case "\\":
+            for(var i=0; i<3; i++){
+                squareID = "r" + i + "_c" + i;
+                document.getElementById(squareID).classList.add("win");
+            }
+            break;
+        case "/":
+            for(var i=2; i>=0; i--){
+                squareID = "r" + i + "_c" + ((i-2)*-1);
+                document.getElementById(squareID).classList.add("win");
+            }
+            break;
+    }
 }
 
 function updateScore(player){
@@ -168,7 +210,7 @@ function resetGame(){
     boardArray = [['','',''], ['','',''], ['','','']];
     moves = 0;
     
-    var boardSquares = document.querySelectorAll('.squares');
+    
     
     var i = boardSquares.length;
     while(i--) boardSquares[i].innerHTML = "";
