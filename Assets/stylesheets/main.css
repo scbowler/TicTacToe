@@ -1,3 +1,11 @@
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
 @font-face{
     font-family: chalk_font2;
     src: url('../fonts/chalk_font2.ttf');
@@ -60,9 +68,12 @@ body {
 
 .squares {
     #border: 1px solid rgba(255,255,255,0.3);
+    color: white;
     width: 33%;
     height: 33%;
     float: left;
+    font-size: 200px;
+    font-family: chalk_font1;
     #display: inline-block;
     #position: relative;
     #background-color: rgba(0,0,0,.3);
@@ -73,24 +84,28 @@ body {
     #top: 50%;
 }
 
-#r1_c2 {
+#r0_c1 {
     border-left: 3px solid rgba(255,255,255,0.3);
     border-right: 3px solid rgba(255,255,255,0.3);
 }
-#r2_c1 {
+#r1_c0 {
     border-top: 3px solid rgba(255,255,255,0.3);
     border-bottom: 3px solid rgba(255,255,255,0.3);
 }
-#r2_c3 {
+#r1_c2 {
     border-top: 3px solid rgba(255,255,255,0.3);
     border-bottom: 3px solid rgba(255,255,255,0.3);
 }
-#r2_c2 {
+#r1_c1 {
     border: 3px solid rgba(255,255,255,0.3);
 }
-#r3_c2 {
+#r2_c1 {
     border-left: 3px solid rgba(255,255,255,0.3);
     border-right: 3px solid rgba(255,255,255,0.3);
+}
+
+.win {
+    color: green;
 }
 
 
@@ -174,9 +189,9 @@ body {
 
 .mark_board {
     #border: 1px solid rgba(0,0,0,0.3);
-    font-size: 35px;
+    font-size: 45px;
     width: 180px;
-    height: 75px;
+    height: 55px;
     font-family: chalk_font1;
     margin: 0 auto;
     #position: relative;

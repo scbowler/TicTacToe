@@ -13,43 +13,43 @@
     
     <div class="button_box"> <!--[ container for buttons ]-->
             
-        <button id="" class="reset_board" name="" onclick="didWin('x')">reset board</button>
-        <button id="" class="reset_all" name="" onclick="">reset all</button>
-        <button class="start_game" onclick="">start game</button>
+        <button id="" class="reset_board" name="" onclick="resetGame()">reset board</button>
+        <button id="" class="reset_all" name="" onclick="resetAll()">reset all</button>
+        <button class="start_game" onclick="startGame()">start game</button>
     </div>
 
 <div id="" class="game_board"><!--[ game board container ]-->
-    <div id="r1_c1" class="squares s1" name="" onclick="mainGame(this)">r1_c1</div>
-    <div id="r1_c2" class="squares s2" name="" onclick="mainGame(this)">r1_c2</div>
-    <div id="r1_c3" class="squares s3" name="" onclick="mainGame(this)">r1_c3</div>
-    <div id="r2_c1" class="squares s4" name="" onclick="mainGame(this)">r2_c1</div>
-    <div id="r2_c2" class="squares s5" name="" onclick="mainGame(this)">r2_c2</div>
-    <div id="r2_c3" class="squares s6" name="" onclick="mainGame(this)">r2_c3</div>
-    <div id="r3_c1" class="squares s7" name="" onclick="mainGame(this)">r3_c1</div>
-    <div id="r3_c2" class="squares s8" name="" onclick="mainGame(this)">r3_c2</div>
-    <div id="r3_c3" class="squares s9" name="" onclick="mainGame(this)">r3_c3</div>
+    <div id="r0_c0" class="squares s1" name="" onclick="mainGame(this)"></div>
+    <div id="r0_c1" class="squares s2" name="" onclick="mainGame(this)"></div>
+    <div id="r0_c2" class="squares s3" name="" onclick="mainGame(this)"></div>
+    <div id="r1_c0" class="squares s4" name="" onclick="mainGame(this)"></div>
+    <div id="r1_c1" class="squares s5" name="" onclick="mainGame(this)"></div>
+    <div id="r1_c2" class="squares s6" name="" onclick="mainGame(this)"></div>
+    <div id="r2_c0" class="squares s7" name="" onclick="mainGame(this)"></div>
+    <div id="r2_c1" class="squares s8" name="" onclick="mainGame(this)"></div>
+    <div id="r2_c2" class="squares s9" name="" onclick="mainGame(this)"></div>
 </div>
     <div class="scores_options_box"> <!--[ container for scores and options ]-->
         <div id="" class="score_board"> <!--[ player scores ]-->
             <h1>scoreboard</h1>
-            <div id="" class="player1_score" name="" onclick="">player 1</div>
-                <div class="mark_board">lllllll</div>
+            <div id="" class="player1_score" name="" onclick="">player X</div>
+                <div class="mark_board" id="xScore"></div>
                 
             <div id="" class="tie_score" name="" onclick="">tie</div>
-                <div class="mark_board">00</div>
-            <div id="" class="player2_score" name="" onclick="">player 2</div>
-                <div class="mark_board">00</div>
+                <div class="mark_board" id="tScore"></div>
+            <div id="" class="player2_score" name="" onclick="">player O</div>
+                <div class="mark_board" id="oScore"></div>
         </div>
         
         <div id="" class="turn_box"> <!--[ player turn indicator ]-->
                     <h1>you're next!</h1>
                 <div id="xTurn" class="turn_show" name="" onclick="">
-                    <h2>Player 1<input type="checkbox" class="" placeholder=""></h2>
+                    <h2>Player X<input type="checkbox" id="xCheck" disabled></h2>
                         
 
                 </div>
                 <div id="oTurn" class="turn_show" name="" onclick="">
-                    <h2>Player 2 <input type="checkbox" class="" placeholder=""></h2>
+                    <h2>Player O<input type="checkbox" id="oCheck" disabled></h2>
                         
                 </div>
         </div>
