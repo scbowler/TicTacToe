@@ -77,13 +77,13 @@ function mainGame(ele){
     if(winner){                     //if a winner exists do the following..
         gameState = "over";
         if(winner == "tie"){
-            alert("It is a tie!");  //if its a tie updates the score for ties
             updateScore('t');
+            setTimeout(function(){alert("It is a tie!")}, 100);  //if its a tie updates the score for ties
             return;
         }
         gameWon(winner);
-        alert(whosTurn + "'s WIN!") //do stuff if someone wins
         updateScore(whosTurn);      //updates the score based on who one
+        setTimeout(function(){alert(whosTurn + "'s WIN!")}, 100); //do stuff if someone wins
         return;
     }
     
